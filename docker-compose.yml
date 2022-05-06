@@ -1,6 +1,6 @@
 services:
-  postgres:
-    container_name: postgres
+  postgres-a:
+    container_name: postgres-a
     image: postgres
     environment:
       POSTGRES_USER: saving
@@ -13,17 +13,17 @@ services:
     networks:
       - postgres
     restart: unless-stopped
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
+  postgres-b:
+    container_name: postgres-b
+    image: postgres
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      POSTGRES_USER: saving
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - postgres:/data/postgres
     ports:
-      - "5050:80"
+      - "5433:5432"
     networks:
       - postgres
     restart: unless-stopped
@@ -58,7 +58,19 @@ services:
       - spring
       - postgres
     depends_on:
+      - postgres-a
+  service-b:
+    image: service-b:latest
+    container_name: service-b
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
       - postgres
+    depends_on:
+      - postgres-b
 
 networks:
   postgres:

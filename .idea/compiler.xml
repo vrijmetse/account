@@ -11,6 +11,7 @@
         <module name="clients" />
         <module name="eureka-server" />
         <module name="service-a" />
+        <module name="service-b" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,6 +21,8 @@
       <module name="customer" target="17" />
       <module name="eureka-server" target="17" />
       <module name="service-a" target="17" />
+      <module name="service-a (1)" target="17" />
+      <module name="service-b" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

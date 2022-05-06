@@ -10,10 +10,10 @@
     <version>1.0</version>
 
     <modules>
-
         <module>eureka-server</module>
         <module>clients</module>
         <module>service-a</module>
+        <module>service-b</module>
         <module>apigw</module>
     </modules>
 

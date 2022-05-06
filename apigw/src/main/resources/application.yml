@@ -7,14 +7,18 @@ spring:
     cloud:
       gateway:
           routes:
-            - id: saving
+            - id: saving-a
               uri: http://localhost:8081
               predicates:
                 - Path=/savings/a/**
               filters:
                 - StripPrefix=2
-      loadbalancer:
-        enabled: true
+            - id: saving-b
+              uri: http://localhost:8082
+              predicates:
+                - Path=/savings/b/**
+              filters:
+                - StripPrefix=2
 eureka:
     client:
         service-url:

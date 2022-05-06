@@ -6,11 +6,19 @@ spring:
         name: api-gateway
     cloud:
        gateway:
-          routes:
-            - id: saving
-              uri: lb://SAVING
-              predicates:
-                - Path=/savings/a/**
+         routes:
+           - id: saving-a
+             uri: http://service-a:8081
+             predicates:
+               - Path=/savings/a/**
+             filters:
+               - StripPrefix=2
+           - id: saving-b
+             uri: http://service-b:8082
+             predicates:
+               - Path=/savings/b/**
+             filters:
+               - StripPrefix=2
 
 eureka:
     client:
