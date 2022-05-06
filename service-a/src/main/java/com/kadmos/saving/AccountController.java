@@ -17,13 +17,13 @@ public class AccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public BigDecimal updateBalance(BigDecimal amount) {
+    public BigDecimal updateBalance(@RequestBody BigDecimal amount) {
         return accountService.updateBalance(amount);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public BigDecimal getBalance(BigDecimal amount) {
-        return accountService.getBalance(amount);
+    public BigDecimal getBalance() {
+        return accountService.getBalance();
     }
 }
