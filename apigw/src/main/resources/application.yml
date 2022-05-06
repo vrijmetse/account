@@ -1,27 +1,29 @@
 server:
-    port: 8080
+  port: 8080
 
 spring:
-    application:
-        name: api-gateway
-    cloud:
-      gateway:
-          routes:
-            - id: saving-a
-              uri: http://localhost:8081
-              predicates:
-                - Path=/savings/a/**
-              filters:
-                - StripPrefix=2
-            - id: saving-b
-              uri: http://localhost:8082
-              predicates:
-                - Path=/savings/b/**
-              filters:
-                - StripPrefix=2
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: saving-a
+          uri: http://localhost:8081
+          predicates:
+            - Path=/savings/a/**
+          filters:
+            - StripPrefix=2
+        - id: saving-b
+          uri: http://localhost:8082
+          predicates:
+            - Path=/savings/b/**
+          filters:
+            - StripPrefix=2
+      httpclient:
+        response-timeout: 5s
 eureka:
-    client:
-        service-url:
-            defaultZone: http://localhost:8761/eureka
-        fetch-registry: true
-        register-with-eureka: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
