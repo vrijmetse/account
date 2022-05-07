@@ -9,4 +9,8 @@
 
 1. Run everything using `docker-compose up -d`
 2. Go to apigw folder and execute `mvn clean verify`
+
+## Preparing it in production
+- To ensure our gateway is scalable we need to ensure it has at least 2 instances on different region with Auto Scaling enabled (with 60% CPU threshold)
+- For monitoring we can use AWS Alarm or even integrating it with New Relic.
  
