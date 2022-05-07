@@ -27,3 +27,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+
+logging:
+  file:
+    name: apigw.log
+  level:
+    root: WARN
+    com:
+      kadmos:
+        apigw: INFO
